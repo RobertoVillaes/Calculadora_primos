@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Informe Prior Art - Candidato 196377869</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family: Georgia, serif; max-width:780px; margin:40px auto; padding:0 20px; line-height:1.7; color:#18181b}
+.mono{font-family: monospace; font-size:12px}
+.header{border-bottom:1px solid #e4e4e7; padding-bottom:20px; margin-bottom:30px}
+.badge{display:inline-block; border:1px solid #e4e4e7; padding:4px 8px; border-radius:4px; font-family:monospace; font-size:11px}
+.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:20px 0}
+.card{border:1px solid #e4e4e7; border-radius:8px; padding:12px; background:#fafafa}
+h1{font-size:32px; line-height:1.2; letter-spacing:-0.02em}
+h2{font-size:19px; margin-top:40px; border-left:3px solid #18181b; padding-left:10px}
+img{max-width:100%; border:1px solid #e4e4e7; border-radius:8px; margin:12px 0}
+.nota{background:#fffbeb; border:1px solid #fde68a; padding:12px; border-radius:8px; font-size:14px}
+.decla{background:#18181b; color:#f4f4f5; padding:20px; border-radius:12px; font-family:monospace; font-size:12px; margin:20px 0}
+</style>
+</head>
+<body>
+<div class="header">
+<div class="mono" style="color:#71717a">INFORME DE PRIOR ART — REGISTRO PÚBLICO<br>RV-PA-2026-1004-196377869 • v1.0 • SHA256:4OCT2026|196377869|0.522039</div>
+<h1>Informe de Prior Art: El Candidato 196377869 — De R(n)=mcm(1..n) al Monstruo Peludo y la Red de Pureza</h1>
+<div class="mono">por Roberto Villaescusa — 4 de octubre de 2026 — Madrid (UTC+2)</div>
+<div class="mono" style="color:#71717a; margin-top:8px">Documento de registro temporal de descubrimiento independiente. No es una reclamación de primalidad de M(n), sino de método de cribado.</div>
+</div>
+
+<h2>01 Resumen Ejecutivo</h2>
+<p>Este informe documenta el hallazgo del entero <b>196.377.869</b> como <i>mejor diamante</i> en el intervalo 194M-250M, bajo la métrica de Pureza de la Red desde R(n).</p>
+<div class="grid mono">
+<div class="card"><div style="color:#a1a1aa; font-size:10px">CANDIDATO n</div><div style="font-size:18px; font-weight:bold">196,377,869</div><div>Primo verificado</div></div>
+<div class="card"><div style="color:#a1a1aa; font-size:10px">PUREZA</div><div style="font-size:18px; font-weight:bold">0.522039</div><div>Resonancia >0.5</div></div>
+<div class="card"><div style="color:#a1a1aa; font-size:10px">PEDESTAL</div><div style="font-size:18px; font-weight:bold">19 acompañados</div><div>Primo solitario</div></div>
+</div>
+<p>Primo solitario con pedestal de 19: genera meseta estable de 19 valores consecutivos de compuestos acompañados antes de caer, y deja un hueco de 20 hasta el siguiente primo relevante en 196.377.889. Es, en mi ventana, el único con esa altura.</p>
+<div class="nota"><b>Aclaración crítica:</b> n = 196.377.869 es primo. M(n) = 2^n -1 —con 59.1M dígitos— <b>no está probado</b>. Queda pendiente de Lucas-Lehmer.</div>
+
+<h2>02 Origen: R(n) = mcm(1..n)</h2>
+<p>Todo empieza en R(n) = mínimo común múltiplo de los primeros n naturales. Su crecimiento a saltos marca los primos.</p>
+<pre class="mono" style="background:#18181b; color:#fafafa; padding:16px; border-radius:8px">R(n) = lcm(1..n)
+R(n+1) = R(n) * (n+1) si n+1 es primo_potencia, si no R(n)</pre>
+
+<h2>03 Monstruo Peludo f(n) y Q(n)</h2>
+<p>De R(n) derivo f(n) = log(R(n)) y el monstruo peludo. Q(n) = f(n) - f(n-1) detecta pedestales.</p>
+<p><b>Imagen 1: Monstruo general</b></p>
+<img src="monstruo_peludo.png" alt="monstruo peludo general">
+<p><b>Imagen 2: Zoom en 196M - El Rey</b></p>
+<img src="monstruo_196M.png" alt="monstruo 196M">
+<p><b>Imagen 3: Tabla pedestal 19</b></p>
+<img src="tabla_pedestal.png" alt="tabla pedestal">
+
+<h2>04 Distinción n vs M(n)</h2>
+<pre class="mono" style="background:#fafafa; border:1px solid #e4e4e7; padding:12px; border-radius:8px">2^27 = 134,217,728
+2^28 = 268,435,456
+196,377,870 no es potencia de 2
+→ 196,377,869 ≠ 2^k -1  => no es Mersenne trivial
+Es exponente candidato para M(n)=2^n-1 con 59,113,xxx dígitos</pre>
+
+<h2>05 Red de Pureza</h2>
+<pre class="mono" style="border:1px solid #e4e4e7; padding:16px; border-radius:8px">logi(n,p) = floor(log_p(n))
+pureza(n) = Σ pow(2, n, p^{logi}) / p^{logi}  normalizada en [0,1]
+Candidato 196,377,869 → 0.522039 > 0.5 = diamante
+</pre>
+
+<h2>06 Estado GIMPS 5 oct 2026</h2>
+<div class="mono" style="background:#f4f4f5; padding:12px; border-radius:8px">
+Máquina: Modern en La Cueva / Los Bajos<br>
+Trial Factoring: 5.39% - ETA 23d 22h (5 oct 2026 10:26)<br>
+Diamante nº1 pureza 0.522039 del 5 ene 2026<br>
+Método: pedestal 19 / gap 20
+</div>
+
+<div class="decla">
+<span style="background:white; color:black; padding:2px 6px; border-radius:3px">DECLARACIÓN</span> Prior Art • No patentable • Dominio público metodológico<br><br>
+n = 196,377,869 primo — pedestal 19 — pureza 0.522039 — gap 20<br>
+M(n)=2^n−1 — 59,113,xxx dígitos — candidato GIMPS — LL pendiente<br>
+Timestamp: 2026-10-04T00:00:00Z / Actualizado 2026-10-05T10:26Z • Autor: Roberto Villaescusa
+</div>
+
+<p>Propongo este n como candidato para verificación distribuida GIMPS. Si M(n) resultase primo, sería el primo de Mersenne más grande conocido con ~59M dígitos.</p>
+<p style="font-style:italic; color:#71717a">Gracias por leer. Empecé con R(n)=mcm(1..n) en una servilleta y terminé con un monstruo peludo de 196 millones. No sé si sirve, pero está fechado.</p>
+
+<div class="mono" style="text-align:center; border-top:1px solid #e4e4e7; margin-top:40px; padding-top:12px; color:#a1a1aa">RV • 4-5 OCT 2026 • MADRID (UTC+2) • FIN DEL INFORME</div>
+</body>
+</html>
